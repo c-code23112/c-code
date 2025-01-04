@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Every Day</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* 使canvas自适应窗口 */
+        .canvas-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 页面内容的基础样式 */
+        .heimen {
+            min-height: 40px;
+            padding: 10px;
+        }
+
+        .container {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="heimen" style="min-height: 40px;font-size: 16px;  padding: 10px; font-family: '华文楷体', '仿宋', Arial, sans-serif;">
+        <!-- 动态信息显示 -->
+        <div id="dynamic-info" style="min-height: 30px;">
+            <p id="current-time">当前时间：<span></span></p>
+
+        </div>
+
+        <!-- 祝福语显示 -->
+        <div id="heimen-text" style="min-height: 30px; font-size: 16px; font-family: '华文楷体', '仿宋', Arial, sans-serif;"></div>
+
+        <script>
+            // 更新当前时间
+            function updateCurrentTime() {
+                const currentTimeElement = document.getElementById('current-time').getElementsByTagName('span')[0];
+                const now = new Date();
+                const formattedTime = now.toLocaleString('zh-CN', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                });
+                currentTimeElement.textContent = formattedTime;
+            }
+
+            // 每秒更新一次当前时间
+            setInterval(updateCurrentTime, 1000);
+
+            // 打字机效果
+            function typewriterEffect(elementId, text, speed) {
+                let i = 0;
+                let element = document.getElementById(elementId);
+                element.innerHTML = ''; // Clear existing content
+                function type() {
+                    if (i < text.length) {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed);
+                    }
+                }
+                type();
+            }
+
+            // 创建动态文本内容
+            const text = "祝各位" + new Date().getFullYear() + "快乐🎁";
+            typewriterEffect("heimen-text", text, 100);  // Speed is 100ms per character
+
+
+            // 页面加载时调用，获取访问者计数并显示
+            window.onload = function () {
+                // 向服务器请求访问计数
+                fetch('https://xiaotuyun.github.io/2024/js/server.js/visitorCount')
+                    .then(response => response.json())
+                    .then(data => {
+                        // 更新页面上的访问计数
+                        document.getElementById('visitorCount').textContent = data.visitorCount;
+                    })
+                    .catch(error => console.error('Error fetching visitor count:', error));
+            };
+        </script>
+    </div>
+
+    <div class="container">
+        <div class="loading-init">
+            <div class="loading-init__header">......</div>
+            <div class="loading-init__status"></div>
+        </div>
+        <div class="stage-container remove">
+            <div class="canvas-container">
+                <canvas id="trails-canvas"></canvas>
+                <canvas id="main-canvas"></canvas>
+            </div>
+
+            <div class="menu hide">
+                <div class="menu__inner-wrap">
+                    <div class="btn btn--bright close-menu-btn">
+                        <svg fill="white" width="24" height="24"><use href="#icon-close" xlink:href="#icon-close"></use></svg>
+                    </div>
+                    <div class="menu__header">设置</div>
+                    <div class="menu__subheader">有关详细信息，请单击任何标签。</div>
+                    <form>
+                        <div class="form-option form-option--select">
+                            <label class="shell-type-label">烟花样式</label>
+                            <select class="shell-type"></select>
+                        </div>
+                        <div class="form-option form-option--select">
+                            <label class="shell-size-label">烟花大小</label>
+                            <select class="shell-size"></select>
+                        </div>
+                        <div class="form-option form-option--select">
+                            <label class="quality-ui-label">质量</label>
+                            <select class="quality-ui"></select>
+                        </div>
+                        <div class="form-option form-option--select">
+                            <label class="sky-lighting-label">天空亮度</label>
+                            <select class="sky-lighting"></select>
+                        </div>
+                        <div class="form-option form-option--select">
+                            <label class="scaleFactor-label">爆炸大小</label>
+                            <select class="scaleFactor"></select>
+                        </div>
+                        <div class="form-option form-option--checkbox">
+                            <label class="auto-launch-label">自动点火</label>
+                            <input class="auto-launch" type="checkbox" />
+                        </div>
+                        <div class="form-option form-option--checkbox form-option--finale-mode">
+                            <label class="finale-mode-label">决赛模式</label>
+                            <input class="finale-mode" type="checkbox" />
+                        </div>
+                        <div class="form-option form-option--checkbox">
+                            <label class="hide-controls-label">隐藏控制</label>
+                            <input class="hide-controls" type="checkbox" />
+                        </div>
+                        <div class="form-option form-option--checkbox form-option--fullscreen">
+                            <label class="fullscreen-label">全屏</label>
+                            <input class="fullscreen" type="checkbox" />
+                        </div>
+                        <div class="form-option form-option--checkbox">
+                            <label class="long-exposure-label">打开快门</label>
+                            <input class="long-exposure" type="checkbox" />
+                        </div>
+                    </form>
+                    <div class="credits">
+                        Passionately built by <a href="http://www.bootstrapmb.com" target="_blank" rel="nofollow">Caleb Miller</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="help-modal">
+            <div class="help-modal__overlay"></div>
+            <div class="help-modal__dialog">
+                <div class="help-modal__header"></div>
+                <div class="help-modal__body"></div>
+                <button type="button" class="help-modal__close-btn">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/visitorCount.js"></script>
+    <script src='js/fscreen%401.0.1.js'></script>
+    <script src='js/Stage%400.1.4.js'></script>
+    <script src='js/MyMath.js'></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
