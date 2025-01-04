@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>教师主页</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+      <style>
+          h1 {
+            text-align: center;
+        }
+      .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+      .function-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+      .btn {
+          margin: 5px 0;
+      }
+    </style>
+
+</head>
+
+<body>
+    <h1>教师主页</h1>
+
+    <div class="main-content">
+        <p>欢迎回来，{{ session['teacher_name'] }}！</p>
+
+        <div class="function-buttons">
+            <a href="{{ url_for('teacher_topic_view') }}" class="btn">查看学生选题情况</a>
+            <a href="{{ url_for('teacher_report_view') }}" class="btn">查看学生报告</a>
+            <a href="{{ url_for('t_progress_fill') }}" class="btn">填写学生项目进度</a>
+            <a href="{{ url_for('t_score_give') }}" class="btn">评定学生成绩</a>
+            <a href="{{ url_for('t_password_change') }}" class="btn">修改密码</a>
+            <a href="{{ url_for('t_material_upload') }}" class="btn">上传学习资料</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

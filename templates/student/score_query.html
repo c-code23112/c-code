@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>学生成绩查询</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style> h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+     .login-section form input[type="submit"] {
+            display: block;
+            margin: 10px auto;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>学生成绩查询</h1>
+
+    <div class="main-content">
+        <button id="query-button" class="btn">查询成绩</button>
+
+        <div id="result-container" style="display: none;">
+            {% if score %}
+            <p>你的课程设计成绩是：<span id="score-value">{{ score }}</span></p>
+            {% else %}
+            <p id="no-result-message">成绩尚未公布，请耐心等待。</p>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+
+</html>

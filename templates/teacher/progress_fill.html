@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>填写学生项目进度</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/styles.css') }}">
+     <style>
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+       .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 50vh;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        label {
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        input[type="password"],
+        input[type="submit"] {
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #fd008a;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>填写学生项目进度</h1>
+
+    <div class="main-content">
+        <form action="{{ url_for('teacher_progress_fill') }}" method="post">
+            <label for="student_id">学生学号：</label>
+            <input type="text" id="student_id" name="student_id" required>
+
+            <label for="progress_status">项目进度描述：</label>
+            <textarea id="progress_status" name="progress_status" required></textarea>
+
+            <input type="submit" value="提交进度" class="btn">
+        </form>
+    </div>
+
+</body>
+
+</html>

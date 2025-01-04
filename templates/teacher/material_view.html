@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>学习资料查看</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/styles.css') }}">
+  <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            font-weight: bold;
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>学习资料查看</h1>
+
+    <div class="main-content">
+        <ul>
+            {% for material in materials %}
+            <li>
+                <span>资料名称：{{ material.material_name }}</span>
+                <a href="{{ material.material_file }}" target="_blank" download>下载资料</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+
+</html>

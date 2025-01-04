@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>学生主页</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        /* 居中对齐标题 */
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+        /* 居中对齐表单 */
+       .login-section {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        /* 表单元素水平对齐 */
+       .login-section form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        /* 提交按钮居中对齐 */
+     .login-section form input[type="submit"] {
+            display: block;
+            margin: 10px auto;
+        }
+        /* 表格对齐 */
+        table {
+            margin: 0 auto;
+        }
+
+       .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 75vh;
+        }
+
+       .function-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+       .btn {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>学生主页</h1>
+
+    <div class="main-content">
+        <p>欢迎回来，{{ session['student_name'] }}！</p>
+
+        <div class="function-buttons">
+            <a href="{{ url_for('topic_selection') }}" class="btn">选题</a>
+            <a href="{{ url_for('s_topic_query') }}" class="btn">查询选题情况</a>
+            <a href="{{ url_for('s_password_change') }}" class="btn">修改密码</a>
+            <a href="{{ url_for('s_report_upload') }}" class="btn">上传报告</a>
+            <a href="{{ url_for('s_score_query') }}" class="btn">查询成绩</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

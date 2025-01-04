@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>学生选题</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+     <style>
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+       .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 50vh;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        input[type="file"],
+        input[type="submit"] {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        input[type="submit"] {
+            background-color: #00fdb9;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>学生选题</h1>
+
+    <div class="main-content">
+        <form action="{{ url_for('student_topic_selection') }}" method="POST">
+            <label for="topic_id">请选择题目：</label>
+            <select id="topic_id" name="topic_id" required>
+                {% for topic in topics %}
+                    <option value="{{ topic.topic_id }}">{{ topic.topic_name }}</option>
+                {% endfor %}
+            </select>
+
+
+            <label for="group_members">请填写同组同学信息（格式：姓名1,学号1;姓名2,学号2;...）：</label>
+            <textarea id="group_members" name="group_members" required></textarea>
+
+            <input type="submit" value="确认选题" class="btn">
+        </form>
+    </div>
+
+</body>
+
+</html>

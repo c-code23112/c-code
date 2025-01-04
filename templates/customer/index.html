@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>客户浏览页面</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-indent: 2em;
+        }
+        </style>
+</head>
+
+<body>
+    <h1>课程设计信息浏览</h1>
+
+    <div class="main-content">
+        <!-- 这里可以添加一些关于课程设计的基本介绍内容 -->
+        <h2>课程设计简介</h2>
+        <p>
+            本软件工程课程设计旨在让学生通过实际项目操作，深入理解软件工程的各个流程和方法，提升学生的团队协作能力、问题解决能力以及软件开发技能。
+        </p>
+        <!-- 假设这里有公开的学习资料展示部分 -->
+        <h2>公开学习资料</h2>
+        <ul>
+            <!-- 这里需要根据实际从数据库获取并展示公开学习资料的列表 -->
+            <li><a href="#">资料1：软件工程入门指南</a></li>
+            <li><a href="#">资料2：项目需求分析示例</a></li>
+            <li><a href="#">资料3：软件设计模式介绍</a></li>
+        </ul>
+    </div>
+
+</body>
+
+</html>

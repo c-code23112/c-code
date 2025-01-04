@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>学生报告查看</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/styles.css') }}">
+     <style>
+          h1 {
+            text-align: center;
+        }
+          .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 25vh;
+        }
+
+      .function-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+      table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+            border-bottom: 1px solid #8800fd;
+        }
+
+        th {
+            font-weight: bold;
+            background-color: #00c1fb;
+        }
+
+       .btn {
+            margin: 5px 0;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>学生报告查看</h1>
+
+    <div class="main-content">
+        <ul>
+            {% for result in results %}
+            <li>
+                <span>学生姓名：{{ result[0] }}</span>
+                <a href="{{ result[1] }}" target="_blank">查看报告</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+
+</html>

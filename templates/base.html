@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>软件工程课程设计管理系统</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        /* 居中对齐标题 */
+        h1 {
+            text-align: center;
+        }
+
+        /* 居中对齐表单 */
+      .login-section {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 表单元素水平对齐 */
+      .login-section form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+      .login-section form label,
+      .login-section form input {
+            display: inline-block;
+            text-align: left;
+            margin: 5px 0;
+        }
+
+        /* 提交按钮居中对齐 */
+      .login-section form input[type="submit"] {
+            display: block;
+            margin: 10px auto;
+        }
+
+        /* 表格对齐 */
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>软件工程课程设计管理系统</h1>
+    <div class="login-section">
+        <h2>登录</h2>
+        <form action="{{ url_for('student_login') }}" method="post">
+            <label for="student_id">学号：</label>
+            <input type="text" id="student_id" name="student_id" required>
+            <label for="student_password">密码：</label>
+            <input type="password" id="student_password" name="student_password" required>
+            <input type="submit" value="学生登录">
+        </form>
+
+        <form action="{{ url_for('teacher_login') }}" method="post">
+            <label for="teacher_id">工资号：</label>
+            <input type="text" id="teacher_id" name="teacher_id" required>
+            <label for="teacher_password">密码：</label>
+            <input type="password" id="teacher_password" name="teacher_password" required>
+            <input type="submit" value="教师登录">
+        </form>
+
+        <form action="{{ url_for('customer_login') }}" method="post">
+            <label for="customer_id">账号：</label>
+            <input type="text" id="customer_id" name="customer_id" required>
+            <label for="customer_password">密码：</label>
+            <input type="password" id="customer_password" name="customer_password" required>
+            <input type="submit" value="客户登录">
+        </form>
+    </div>
+</body>
+</html>
+

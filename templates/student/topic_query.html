@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>学生课题查询</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+   <style>
+        h1 {
+            text-align: center !important;
+            margin-top: 80px;
+
+        }
+
+       .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <h1>学生课题查询</h1>
+
+    <div class="main-content">
+        <!-- 查询表单 -->
+        <form action="{{ url_for('student_topic_query') }}" method="POST">
+            <label for="query_type">请选择查询类型：</label>
+            <select id="query_type" name="query_type" required>
+                <option value="by_topic_id">按课题编号查询</option>
+                <option value="by_student_id">按学生编号查询</option>
+            </select>
+
+            <label for="query_value">请输入查询值：</label>
+            <input type="text" id="query_value" name="query_value" required>
+
+            <input type="submit" value="查询" class="btn">
+        </form>
+
+        <!-- 查询结果展示区域 -->
+        {% if query_results %}
+        <h2>查询结果：</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>课题编号</th>
+                    <th>课题名称</th>
+                    <th>学生编号</th>
+                    <th>学生姓名</th>
+                    <th>小组同学信息</th>
+                    <th>是否选中</th>
+                    <th>进度状态</th>
+                    <th>进度详情</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in query_results %}
+                <tr>
+                    <td>{{ result.student_topic_id }}</td>
+                    <td>{{ result.topic_name }}</td>
+                    <td>{{ result.student_id }}</td>
+                    <td>{{ result.student_name }}</td>
+                    <td>{{ result.group_members }}</td>
+                    <td>{{ result.is_selected }}</td>
+                    <td>{{ result.progress_status }}</td>
+                    <td>{{ result.progress_details }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>暂无查询结果，请检查查询条件后重新查询。</p>
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>

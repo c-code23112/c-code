@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>上传学习资料</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/styles.css') }}">
+     <style>
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+       .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 50vh;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        input[type="file"],
+        input[type="submit"] {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        input[type="submit"] {
+            background-color: #fde300;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>上传学习资料</h1>
+
+    <div class="main-content">
+        <form action="{{ url_for('teacher_material_upload') }}" method="post" enctype="multipart/form-data">
+            <label for="material_name">资料名称：</label>
+            <input type="text" id="material_name" name="material_name" required>
+
+            <label for="material_file">选择要上传的资料文件：</label>
+            <input type="file" id="material_file" name="material_file" required>
+
+            <input type="submit" value="上传资料" class="btn">
+        </form>
+    </div>
+
+</body>
+
+</html>

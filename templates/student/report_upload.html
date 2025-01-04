@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>上传报告</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+      <style>
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+       .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        input[type="file"],
+        input[type="submit"] {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        input[type="submit"] {
+            background-color: #5200fd;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>上传报告</h1>
+
+    <div class="main-content">
+        <form action="{{ url_for('student_report_upload') }}" method="post" enctype="multipart/form-data">
+            <label for="report_file">选择要上传的报告文件：</label>
+            <input type="file" id="report_file" name="report_file" required>
+
+            <input type="submit" value="上传报告" class="btn">
+        </form>
+    </div>
+
+</body>
+
+</html>
